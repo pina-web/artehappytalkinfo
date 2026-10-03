@@ -457,7 +457,8 @@ const P=(n,r,t)=>[n,r,t];
 const PARTS=[{k:'as',title:'해피톡 상담',secs:[
  {id:'h1',cd:'1',t:'로그인 · 화면 구성',ck:'happytalk.io 로그인 → 상담 화면',sl:[
   S(20,'1-1 해피톡 로그인',[P('주소',[70,42,700,72],'주소창에 happytalk.io 입력'),P('로그인',[1495,90,1560,122],'오른쪽 위 “로그인” 클릭 → 로그인 정보는 CS업무방에서 확인 · 1회 로그인하면 계속 유지됨')]),
-  S(25,'1-2 상담 화면 구성',[P('상태',[60,195,445,255],'접수 · 문의 · 응대 · 종료 · 알람 · 보류 — 숫자는 해당 상태의 상담 수'),P('목록',[55,362,450,448],'상담 목록 — 고객을 클릭하면 가운데에 대화가 열림'),P('대화',[458,380,1105,920],'현재상담 대화창 · 아래 입력창에서 답장'),P('정보',[1120,125,1440,170],'오른쪽 위 : 상담방정보 · 고객정보 · 상담이력 탭'),P('문구',[1120,590,1910,970],'상담 템플릿 · 즐겨찾기 · 자동완성 (계좌 · 종료 멘트 등)'),P('버튼',[750,988,1102,1022],'부가기능 · 마스킹 해제 · 메모 · 종료보류 · 상담 종료')])]},
+  S(21,'1-2 로그인 화면',[P('주소',[150,62,700,98],'counselor.happytalk.io 로그인 화면'),P('아이디',[1100,345,1618,425],'아이디 입력 (CS업무방에서 확인)'),P('비밀번호',[1100,450,1618,528],'비밀번호 입력 (CS업무방에서 확인)'),P('유지',[1100,555,1618,632],'로그인 유지시간 선택 — 1회 로그인하면 계속 유지됨'),P('로그인',[1100,657,1618,705],'“로그인” 클릭')]),
+  S(25,'1-3 상담 화면 구성',[P('상태',[60,195,445,255],'접수 · 문의 · 응대 · 종료 · 알람 · 보류 — 숫자는 해당 상태의 상담 수'),P('목록',[55,362,450,448],'상담 목록 — 고객을 클릭하면 가운데에 대화가 열림'),P('대화',[458,380,1105,920],'현재상담 대화창 · 아래 입력창에서 답장'),P('정보',[1120,125,1440,170],'오른쪽 위 : 상담방정보 · 고객정보 · 상담이력 탭'),P('문구',[1120,590,1910,970],'상담 템플릿 · 즐겨찾기 · 자동완성 (계좌 · 종료 멘트 등)'),P('버튼',[750,988,1102,1022],'부가기능 · 마스킹 해제 · 메모 · 종료보류 · 상담 종료')])]},
  {id:'h2',cd:'2',t:'고객정보 입력',ck:'고객정보 ID에 아파트명 + 동호수 + 타입 입력',sl:[
   S(35,'2-1 고객정보 입력창 열기',[P('탭',[1245,130,1332,166],'오른쪽 “고객정보” 탭'),P('연필',[1845,262,1892,298],'기본 정보 오른쪽 연필 버튼 클릭'),P('ID',[806,344,1068,371],'ID : 아파트명 + 동호수 + 타입 (예: ㅇㅇㅇ아파트 ㅇㅇㅇ동ㅇㅇㅇ호 ㅇㅇㅇ타입)'),P('휴대폰',[806,502,1068,529],'휴대폰 : 숫자만 입력'),P('저장',[975,856,1068,898],'“저장” 클릭')]),
   S(55,'2-2 저장 확인 · 인사',[P('ID',[1225,306,1470,335],'고객정보에 아파트 · 동호수 · 휴대폰 저장됨'),P('목록',[68,404,442,446],'상담 목록에도 아파트 동호수가 표시돼 찾기 쉬움'),P('인사',[930,778,1068,858],'“안녕하세요. 고객님” → “신규문의이실까요?”')],['hello','newq'])]},
@@ -542,7 +543,7 @@ $('#toc').style.gridTemplateColumns='minmax(0,1fr)';
 $('#toc').innerHTML=`<div class="col as"><h3>상담 순서</h3><div class="flow">${PARTS[0].secs.map((s,i)=>`${i?'<i>›</i>':''}<span><a href="#${s.id}" style="padding:0;display:inline">${s.cd}. ${esc(s.t)}</a></span>`).join('')}</div></div>`;
 $('#body').innerHTML=PARTS[0].secs.map(s=>`<section class="sec" id="${s.id}"><h3><span class="cd">${s.cd}</span>${esc(s.t)}</h3>${s.sl.map(x=>`<div class="slide stepblk" data-p="${x.p}"><div class="vw"></div>${x.say.length?`<div class="say">${x.say.map(k=>`<div class="bubble">${esc(M[k])}<button type="button" class="copy" data-m="${k}">복사</button></div>`).join('')}</div>`:''}</div>`).join('')}</section>`).join('');
 const blks=$$('#body .slide');
-PARTS[0].secs.forEach(sec=>sec.sl.forEach(x=>{CROP[x.p]=[0,40,1914,1030];}));
+PARTS[0].secs.forEach(sec=>sec.sl.forEach(x=>{CROP[x.p]=[0,40,1914,1030];}));CROP[21]=[0,0,1917,1012];
 blks.forEach((b,k)=>{const p=+b.dataset.p;let sec,x;PARTS[0].secs.forEach(s=>s.sl.forEach(y=>{if(y.p===p){sec=s;x=y}}));const sp=x.t.indexOf(' ');
  viewer(b.querySelector('.vw'),[{p,code:x.t.slice(0,sp),t:x.t.slice(sp+1),ck:sec.ck,pins:x.pins.map(a=>({n:a[0],r:a[1],t:a[2]}))}],{follow:true,onDone:()=>{const n=blks[k+1];if(n)n.scrollIntoView({behavior:'smooth',block:'start'})}});});
 function copyText(t,b,box){const done=()=>{b.textContent='복사됨';toast('멘트를 복사했어요');setTimeout(()=>b.textContent='복사',1500)};const fb=()=>{const r=document.createRange();r.selectNodeContents(box);const s=getSelection();s.removeAllRanges();s.addRange(r);toast('선택됐어요. Ctrl+C로 복사하세요')};try{navigator.clipboard.writeText(t).then(done,fb)}catch(e){fb()}}
